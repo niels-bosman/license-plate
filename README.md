@@ -7,18 +7,18 @@ Simple and reliable Dutch license plate formatting.
 ![GitHub Repo stars](https://img.shields.io/github/stars/niels-bosman/license-plate?style=social)
 
 ## Install
-Install with NPM
-```
+Install with npm
+```console
 npm install license-plate --save
 ```
 
 Install with yarn
-```
+```console
 yarn add license-plate --save
 ```
 
 ## How to use
-```
+```js
 import LicensePlate from 'license-plate';
 
 LicensePlate.make('99xxxx'); // returns '99-XX-XX'

@@ -1,4 +1,4 @@
-import LicensePlate from "../src";
+import LicensePlate from '../src';
 
 describe('License Plate', () => {
   it('Should format sidecode 1 correctly', () => {

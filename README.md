@@ -1,6 +1,6 @@
 Formats a string to a Dutch license plate.
 
-![npm bundle size](https://img.shields.io/bundlephobia/min/vue-toggle-component)
+![npm bundle size](https://img.shields.io/bundlephobia/min/license-plate)
 ![npm](https://img.shields.io/npm/dt/license-plate)
 ![GitHub issues](https://img.shields.io/github/issues/niels-bosman/license-plate)
 ![npm](https://img.shields.io/npm/v/license-plate)
@@ -21,5 +21,5 @@ yarn add license-plate --save
 ```
 import LicensePlate from 'license-plate';
 
-console.log(LicensePlate.make('99xxxx')); // 99-XX-XX
+LicensePlate.make('99xxxx'); // returns '99-XX-XX'
 ```

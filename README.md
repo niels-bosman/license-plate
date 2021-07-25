@@ -1,4 +1,4 @@
-Formats a string to a Dutch license plate.
+Simple and reliable Dutch license plate formatting.
 
 ![npm bundle size](https://img.shields.io/bundlephobia/min/license-plate)
 ![npm](https://img.shields.io/npm/dt/license-plate)

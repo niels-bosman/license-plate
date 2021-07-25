@@ -32,6 +32,17 @@
   },
   "name": "license-plate",
   "author": "Niels Bosman",
+  "description": "Simple and reliable Dutch license plate formatting.",
+  "repository": "git+https://github.com/niels-bosman/license-plate.git",
+  "keywords": [
+    "License plate",
+    "Formatter",
+    "Dutch"
+  ],
+  "bugs": {
+    "url": "https://github.com/niels-bosman/license-plate/issues"
+  },
+  "homepage": "https://github.com/niels-bosman/license-plate#readme",
   "module": "dist/license-plate.esm.js",
   "size-limit": [
     {

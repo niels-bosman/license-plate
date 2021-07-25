@@ -56,7 +56,7 @@ export default class LicensePlate {
    * Finds the matching sidecode by the given license plate.
    *
    * @private
-   * @return {number | undefined} The index of the sidecode.
+   * @return {number} The index of the sidecode.
    */
   private static getSidecode(): number {
     for (let sidecode of this.sidecodes) {

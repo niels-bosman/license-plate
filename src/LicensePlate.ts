@@ -45,7 +45,7 @@ export default class LicensePlate {
    * @param licensePlate {string} Given license plate.
    * @returns {string} The formatted license plate.
    */
-  public static make(licensePlate: string): string {
+  public static from(licensePlate: string): string {
     this.licensePlate = this.getPrettyLicensePlate(licensePlate);
     this.sidecode = this.getSidecode();
 

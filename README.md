@@ -8,12 +8,12 @@ Simple and reliable Dutch license plate formatting.
 
 ## Install
 Install with npm
-```console
+```
 npm install license-plate --save
 ```
 
 Install with yarn
-```console
+```
 yarn add license-plate --save
 ```
 
@@ -21,5 +21,5 @@ yarn add license-plate --save
 ```js
 import LicensePlate from 'license-plate';
 
-LicensePlate.make('99xxxx'); // returns '99-XX-XX'
+LicensePlate.from('99xxxx'); // returns '99-XX-XX'
 ```

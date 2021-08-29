@@ -31,8 +31,8 @@ export default class LicensePlate {
   private readonly licensePlate: string;
 
   /**
-   * Constructs the licence plate.
-   * Removed the dashes from the input and makes it uppercase.
+   * Constructs the licence plate with the input
+   * value in uppercase with dashed removed.
    */
   constructor(licensePlate: string) {
     this.licensePlate = licensePlate.replace(/-/g, '').toUpperCase();

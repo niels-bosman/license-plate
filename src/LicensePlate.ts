@@ -5,7 +5,7 @@ export default class LicensePlate {
    * @private
    * @type {RegExp[]}
    */
-  private static sidecodes: RegExp[] = [
+  private readonly sidecodes: RegExp[] = [
     /^[a-zA-Z]{2}[0-9]{2}[0-9]{2}$/,    // [1]  => XX-99-99
     /^[0-9]{2}[0-9]{2}[a-zA-Z]{2}$/,    // [2]  => 99-99-XX
     /^[0-9]{2}[a-zA-Z]{2}[0-9]{2}$/,    // [3]  => 99-XX-99
@@ -28,81 +28,62 @@ export default class LicensePlate {
    * @private
    * @type {string}
    */
-  private static licensePlate: string;
+  private readonly licensePlate: string;
 
   /**
-   * The matched sidecode based on input string.
-   *
-   * @private
-   * @type {number}
+   * Constructs the licence plate.
+   * Removed the dashes from the input and makes it uppercase.
    */
-  private static sidecode: number;
+  constructor(licensePlate: string) {
+    this.licensePlate = licensePlate.replace(/-/g, '').toUpperCase();
+  }
 
   /**
-   * Builds a new license plate based on input.
+   * Checks if the given license plate is valid.
    *
    * @public
-   * @param licensePlate {string} Given license plate.
-   * @returns {string} The formatted license plate.
+   * @return {boolean} True if sidecode matches, false if none matches.
    */
-  public static from(licensePlate: string): string {
-    this.licensePlate = this.getPrettyLicensePlate(licensePlate);
-    this.sidecode = this.getSidecode();
-
-    return this.format();
+  public valid(): boolean {
+    return this.sidecode() !== 0;
   }
 
   /**
    * Finds the matching sidecode by the given license plate.
    *
-   * @private
+   * @public
    * @return {number} The index of the sidecode.
    */
-  private static getSidecode(): number {
-    for (let sidecode of this.sidecodes) {
-      if (this.licensePlate.match(sidecode)) {
-        return this.sidecodes.indexOf(sidecode) + 1;
-      }
-    }
-
-    return 0;
-  }
-
-  /**
-   * Removes dashes from license plate and makes it uppercase.
-   *
-   * @private
-   * @param licensePlate {string} Input license plate.
-   * @returns {string} The pretty license plate.
-   */
-  private static getPrettyLicensePlate(licensePlate: string): string {
-    return licensePlate.replace(/-/g, '').toUpperCase();
+  public sidecode(): number {
+    return this.sidecodes.findIndex((sidecode: RegExp) => this.licensePlate.match(sidecode)) + 1;
   }
 
   /**
    * Formats the input license plate to real license plate based on the matched sidecode.
    *
-   * @private
+   * @public
    * @returns {string} The formatted license plate.
    */
-  private static format(): string {
-    if (this.sidecode <= 6) {
+  public pretty(): string {
+    const sidecode = this.sidecode();
+
+    if (sidecode <= 6 && sidecode > 0) {
       return `${this.licensePlate.substr(0, 2)}-${this.licensePlate.substr(2, 2)}-${this.licensePlate.substr(4, 2)}`;
     }
 
-    if ([7, 9].includes(this.sidecode)) {
+    if ([7, 9].includes(sidecode)) {
       return `${this.licensePlate.substr(0, 2)}-${this.licensePlate.substr(2, 3)}-${this.licensePlate.substr(5, 1)}`;
     }
 
-    if ([8, 10].includes(this.sidecode)) {
+    if ([8, 10].includes(sidecode)) {
       return `${this.licensePlate.substr(0, 1)}-${this.licensePlate.substr(1, 3)}-${this.licensePlate.substr(4, 2)}`;
     }
 
-    if ([11, 14].includes(this.sidecode)) {
+    if ([11, 14].includes(sidecode)) {
       return `${this.licensePlate.substr(0, 3)}-${this.licensePlate.substr(3, 2)}-${this.licensePlate.substr(5, 1)}`;
     }
 
-    if ([12, 13].includes(this.sidecode)) {
+    if ([12, 13].includes(sidecode)) {
       return `${this.licensePlate.substr(0, 1)}-${this.licensePlate.substr(1, 2)}-${this.licensePlate.substr(3, 3)}`;
     }
 

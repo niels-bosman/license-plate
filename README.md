@@ -1,4 +1,4 @@
-Simple and reliable Dutch license plate formatting.
+Dutch license plate formatting and validation in JavaScript.
 
 ![npm bundle size](https://img.shields.io/bundlephobia/min/license-plate)
 ![npm](https://img.shields.io/npm/dt/license-plate)
@@ -17,9 +17,20 @@ Install with yarn
 yarn add license-plate --save
 ```
 
+## Features
+
+- Validating license plate
+- Formatting license plate
+- Retrieving sidecodes from license plate
+
 ## How to use
 ```js
 import LicensePlate from 'license-plate';
 
-LicensePlate.from('99xxxx'); // returns '99-XX-XX'
+const plate = new LicensePlate('xx9999');
+
+if (plate.valid()) {
+  console.log(plate.pretty()); // 'XX-99-99'
+  console.log(plate.sidecode()); // 1
+}
 ```

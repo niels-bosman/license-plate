@@ -9,12 +9,12 @@ Dutch license plate formatting and validation in JavaScript.
 ## Install
 Install with npm
 ```bash
-$ npm install license-plate --save
+npm install license-plate --save
 ```
 
 Install with yarn
 ```bash
-$ yarn add license-plate --save
+yarn add license-plate --save
 ```
 
 ## Features

@@ -29,8 +29,7 @@ import LicensePlate from 'license-plate';
 
 const plate = new LicensePlate('xx9999');
 
-if (plate.valid()) {
-  console.log(plate.pretty()); // 'XX-99-99'
-  console.log(plate.sidecode()); // 1
-}
+plate.valid();    // true
+plate.pretty();   // 'XX-99-99'
+plate.sidecode(); // 1
 ```

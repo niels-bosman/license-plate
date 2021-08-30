@@ -19,9 +19,9 @@ yarn add license-plate --save
 
 ## Features
 
-- Validating license plate
-- Formatting license plate
-- Retrieving sidecodes from license plate
+- ✅ Validating a license plate.
+- 🚗 Formatting a license plate.
+- 🔢 Retrieving sidecode from a license plate.
 
 ## How to use
 ```js

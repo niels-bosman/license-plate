@@ -8,13 +8,13 @@ Dutch license plate formatting and validation in JavaScript.
 
 ## Install
 Install with npm
-```
-npm install license-plate --save
+```bash
+$ npm install license-plate --save
 ```
 
 Install with yarn
-```
-yarn add license-plate --save
+```bash
+$ yarn add license-plate --save
 ```
 
 ## Features

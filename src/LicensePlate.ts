@@ -3,6 +3,7 @@ export default class LicensePlate {
    * All Dutch sidecodes.
    *
    * @private
+   * @readonly
    * @type {RegExp[]}
    */
   private readonly sidecodes: RegExp[] = [
@@ -23,9 +24,10 @@ export default class LicensePlate {
   ];
 
   /**
-   * The given license plate.
+   * License plate.
    *
    * @private
+   * @readonly
    * @type {string}
    */
   private readonly licensePlate: string;
@@ -52,7 +54,7 @@ export default class LicensePlate {
    * Finds the matching sidecode by the given license plate.
    *
    * @public
-   * @return {number} The index of the sidecode.
+   * @return {number} The index of the sidecode, 0 if not found.
    */
   public sidecode(): number {
     return this.sidecodes.findIndex((sidecode: RegExp) => this.licensePlate.match(sidecode)) + 1;

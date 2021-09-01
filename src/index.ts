@@ -1,3 +1,3 @@
-import LicensePlate from './LicensePlate';
+import LicensePlate from './license-plate';
 
 export default LicensePlate;

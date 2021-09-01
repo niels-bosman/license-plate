@@ -1,28 +1,7 @@
-export default class LicensePlate {
-  /**
-   * All Dutch sidecodes.
-   *
-   * @private
-   * @readonly
-   * @type {RegExp[]}
-   */
-  private readonly sidecodes: RegExp[] = [
-    /^[a-zA-Z]{2}[0-9]{2}[0-9]{2}$/,    // [1]  => XX-99-99
-    /^[0-9]{2}[0-9]{2}[a-zA-Z]{2}$/,    // [2]  => 99-99-XX
-    /^[0-9]{2}[a-zA-Z]{2}[0-9]{2}$/,    // [3]  => 99-XX-99
-    /^[a-zA-Z]{2}[0-9]{2}[a-zA-Z]{2}$/, // [4]  => XX-99-XX
-    /^[a-zA-Z]{2}[a-zA-Z]{2}[0-9]{2}$/, // [5]  => XX-XX-99
-    /^[0-9]{2}[a-zA-Z]{2}[a-zA-Z]{2}$/, // [6]  => 99-XX-XX
-    /^[0-9]{2}[a-zA-Z]{3}[0-9]$/,       // [7]  => 99-XXX-9
-    /^[0-9][a-zA-Z]{3}[0-9]{2}$/,       // [8]  => 9-XXX-99
-    /^[a-zA-Z]{2}[0-9]{3}[a-zA-Z]$/,    // [9]  => XX-999-X
-    /^[a-zA-Z][0-9]{3}[a-zA-Z]{2}$/,    // [10] => X-999-XX
-    /^[a-zA-Z]{3}[0-9]{2}[a-zA-Z]$/,    // [11] => XXX-99-X
-    /^[a-zA-Z][0-9]{2}[a-zA-Z]{3}$/,    // [12] => X-99-XXX
-    /^[0-9][a-zA-Z]{2}[0-9]{3}$/,       // [13] => 9-XX-999
-    /^[0-9]{3}[a-zA-Z]{2}[0-9]$/,       // [14] => 999-XX-9
-  ];
+import sidecodes from './sidecodes';
+import forbiddenWords from './forbidden-words';
 
+export default class LicensePlate {
   /**
    * License plate.
    *
@@ -47,7 +26,7 @@ export default class LicensePlate {
    * @return {boolean} True if sidecode matches, false if none matches.
    */
   public valid(): boolean {
-    return this.sidecode() !== 0;
+    return this.sidecode() !== 0 && !this.forbidden();
   }
 
   /**
@@ -57,7 +36,7 @@ export default class LicensePlate {
    * @return {number} The index of the sidecode, 0 if not found.
    */
   public sidecode(): number {
-    return this.sidecodes.findIndex((sidecode: RegExp) => this.licensePlate.match(sidecode)) + 1;
+    return sidecodes.findIndex((sidecode: RegExp) => this.licensePlate.match(sidecode)) + 1;
   }
 
   /**
@@ -90,5 +69,16 @@ export default class LicensePlate {
     }
 
     return this.licensePlate;
+  }
+
+  /**
+   * Checks whether the given license plate includes
+   * some of the forbidden letter combinations
+   *
+   * @return {boolean}
+   * @private
+   */
+  private forbidden(): boolean {
+    return forbiddenWords.some((letterCombination: string) => this.licensePlate.includes(letterCombination));
   }
 }

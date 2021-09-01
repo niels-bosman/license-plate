@@ -3,7 +3,7 @@
  *
  * @type {RegExp[]}
  */
-const availableSidecodes: RegExp[] = [
+const sidecodes: RegExp[] = [
 	/^[a-zA-Z]{2}[0-9]{2}[0-9]{2}$/,    // [1]  => XX-99-99
 	/^[0-9]{2}[0-9]{2}[a-zA-Z]{2}$/,    // [2]  => 99-99-XX
 	/^[0-9]{2}[a-zA-Z]{2}[0-9]{2}$/,    // [3]  => 99-XX-99
@@ -20,4 +20,4 @@ const availableSidecodes: RegExp[] = [
 	/^[0-9]{3}[a-zA-Z]{2}[0-9]$/,       // [14] => 999-XX-9
 ];
 
-export default availableSidecodes;
+export default sidecodes;

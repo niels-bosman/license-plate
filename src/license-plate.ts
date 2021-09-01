@@ -1,4 +1,4 @@
-import availableSidecodes from './sidecodes';
+import sidecodes from './sidecodes';
 import forbiddenWords from './forbidden-words';
 
 export default class LicensePlate {
@@ -36,7 +36,7 @@ export default class LicensePlate {
    * @return {number} The index of the sidecode, 0 if not found.
    */
   public sidecode(): number {
-    return availableSidecodes.findIndex((sidecode: RegExp) => this.licensePlate.match(sidecode)) + 1;
+    return sidecodes.findIndex((sidecode: RegExp) => this.licensePlate.match(sidecode)) + 1;
   }
 
   /**

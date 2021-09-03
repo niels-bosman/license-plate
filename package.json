@@ -11,7 +11,7 @@
     "node": ">=12"
   },
   "scripts": {
-    "start": "tsdx watch",
+    "watch": "tsdx watch",
     "build": "tsdx build",
     "test": "tsdx test",
     "prepare": "tsdx build",

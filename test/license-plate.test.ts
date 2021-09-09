@@ -151,8 +151,5 @@ describe('License Plate', () => {
     expect(new LicensePlate('x-99-psv').valid()).toBeFalsy();
     expect(new LicensePlate('x-99-sss').valid()).toBeFalsy();
     expect(new LicensePlate('x-99-sds').valid()).toBeFalsy();
-    expect(new LicensePlate('x-99-pvv').valid()).toBeFalsy();
-    expect(new LicensePlate('x-99-sgp').valid()).toBeFalsy();
-    expect(new LicensePlate('x-99-vvd').valid()).toBeFalsy();
   });
 });

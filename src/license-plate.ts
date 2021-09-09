@@ -12,11 +12,10 @@ export default class LicensePlate {
   private readonly licensePlate: string;
 
   /**
-   * Constructs the licence plate with the input
-   * value in uppercase with dashed removed.
+   * Constructs the licence plate with the input value as uppercase.
    */
   constructor(licensePlate: string) {
-    this.licensePlate = licensePlate.replace(/-/g, '').toUpperCase();
+    this.licensePlate = licensePlate.toUpperCase();
   }
 
   /**
@@ -36,7 +35,19 @@ export default class LicensePlate {
    * @return {number} The index of the sidecode, 0 if not found.
    */
   public sidecode(): number {
-    return sidecodes.findIndex((sidecode: RegExp) => this.licensePlate.match(sidecode)) + 1;
+    const licensePlate = this.strippedLicensePlate();
+
+    return sidecodes.findIndex((sidecode: RegExp) => licensePlate.match(sidecode)) + 1;
+  }
+
+  /**
+   * Strips the dashes from the license plate.
+   *
+   * @private
+   * @return {string}
+   */
+  private strippedLicensePlate(): string {
+    return this.licensePlate.replace(/-/g, '');
   }
 
   /**
@@ -46,29 +57,30 @@ export default class LicensePlate {
    * @returns {string} The formatted license plate.
    */
   public pretty(): string {
-    const sidecode = this.sidecode();
+    const sidecode     = this.sidecode();
+    const licensePlate = this.strippedLicensePlate();
 
     if (sidecode <= 6 && sidecode > 0) {
-      return `${this.licensePlate.substr(0, 2)}-${this.licensePlate.substr(2, 2)}-${this.licensePlate.substr(4, 2)}`;
+      return `${licensePlate.substr(0, 2)}-${licensePlate.substr(2, 2)}-${licensePlate.substr(4, 2)}`;
     }
 
     if ([7, 9].includes(sidecode)) {
-      return `${this.licensePlate.substr(0, 2)}-${this.licensePlate.substr(2, 3)}-${this.licensePlate.substr(5, 1)}`;
+      return `${licensePlate.substr(0, 2)}-${licensePlate.substr(2, 3)}-${licensePlate.substr(5, 1)}`;
     }
 
     if ([8, 10].includes(sidecode)) {
-      return `${this.licensePlate.substr(0, 1)}-${this.licensePlate.substr(1, 3)}-${this.licensePlate.substr(4, 2)}`;
+      return `${licensePlate.substr(0, 1)}-${licensePlate.substr(1, 3)}-${licensePlate.substr(4, 2)}`;
     }
 
     if ([11, 14].includes(sidecode)) {
-      return `${this.licensePlate.substr(0, 3)}-${this.licensePlate.substr(3, 2)}-${this.licensePlate.substr(5, 1)}`;
+      return `${licensePlate.substr(0, 3)}-${licensePlate.substr(3, 2)}-${licensePlate.substr(5, 1)}`;
     }
 
     if ([12, 13].includes(sidecode)) {
-      return `${this.licensePlate.substr(0, 1)}-${this.licensePlate.substr(1, 2)}-${this.licensePlate.substr(3, 3)}`;
+      return `${licensePlate.substr(0, 1)}-${licensePlate.substr(1, 2)}-${licensePlate.substr(3, 3)}`;
     }
 
-    return this.licensePlate;
+    return licensePlate;
   }
 
   /**

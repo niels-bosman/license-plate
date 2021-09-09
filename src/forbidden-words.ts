@@ -14,9 +14,6 @@ const forbiddenWords: string[] = [
 	'TBS',
 	'SS',
 	'SD',
-	'PVV',
-	'SGP',
-	'VVD',
 ];
 
 export default forbiddenWords;

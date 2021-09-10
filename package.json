@@ -35,8 +35,11 @@
   "repository": "git+https://github.com/niels-bosman/license-plate.git",
   "keywords": [
     "License plate",
+    "Kenteken",
     "Formatting",
-    "Dutch"
+    "Formatteren",
+    "Dutch",
+    "Nederlands"
   ],
   "bugs": {
     "url": "https://github.com/niels-bosman/license-plate/issues"

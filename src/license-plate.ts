@@ -1,5 +1,5 @@
-import sidecodes from './sidecodes';
-import forbiddenWords from './forbidden-words';
+import sidecodes from './data/sidecodes';
+import { forbiddenWords, politicalParties } from './data/letter-combinations';
 
 export default class LicensePlate {
   /**
@@ -91,6 +91,12 @@ export default class LicensePlate {
    * @private
    */
   private forbidden(): boolean {
-    return forbiddenWords.some((letterCombination: string) => this.licensePlate.includes(letterCombination));
+    let forbidden = forbiddenWords;
+
+    if (this.sidecode() >= 11) {
+      forbidden = [...forbidden, ...politicalParties];
+    }
+
+    return forbidden.some((letterCombination: string) => this.licensePlate.includes(letterCombination));
   }
 }

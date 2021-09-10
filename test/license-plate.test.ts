@@ -152,4 +152,38 @@ describe('License Plate', () => {
     expect(new LicensePlate('x-99-sss').valid()).toBeFalsy();
     expect(new LicensePlate('x-99-sds').valid()).toBeFalsy();
   });
+
+  it('Should not detect VVD in license plates that are under sidecode 7', () => {
+    expect(new LicensePlate('14-VVD-4').valid()).toBeTruthy();
+  });
+
+  it('Should detect political parties in license plates that have sidecode of 7 or higher', () => {
+    expect(new LicensePlate('99-PVV-9').valid()).toBeFalsy();
+    expect(new LicensePlate('9-PVV-99').valid()).toBeFalsy();
+    expect(new LicensePlate('PVV-99-X').valid()).toBeFalsy();
+    expect(new LicensePlate('X-99-PVV').valid()).toBeFalsy();
+
+    expect(new LicensePlate('99-SGP-9').valid()).toBeFalsy();
+    expect(new LicensePlate('9-SGP-99').valid()).toBeFalsy();
+    expect(new LicensePlate('SGP-99-X').valid()).toBeFalsy();
+    expect(new LicensePlate('X-99-SGP').valid()).toBeFalsy();
+  });
+
+  it('Should detect political party VVD tp be invalid starting from sidecode 8', () => {
+    expect(new LicensePlate('9-VVD-99').valid()).toBeFalsy();
+    expect(new LicensePlate('VVD-99-X').valid()).toBeFalsy();
+    expect(new LicensePlate('X-99-VVD').valid()).toBeFalsy();
+  });
+
+  it('Should not detect forbidden words that are not at the same spot', () => {
+    expect(new LicensePlate('99-ak-kk').valid()).toBeTruthy();
+    expect(new LicensePlate('99-ag-vd').valid()).toBeTruthy();
+    expect(new LicensePlate('99-ak-vt').valid()).toBeTruthy();
+    expect(new LicensePlate('99-al-pf').valid()).toBeTruthy();
+    expect(new LicensePlate('99-an-sb').valid()).toBeTruthy();
+    expect(new LicensePlate('99-ap-kk').valid()).toBeTruthy();
+    expect(new LicensePlate('99-ap-sv').valid()).toBeTruthy();
+    expect(new LicensePlate('99-as-sf').valid()).toBeTruthy();
+    expect(new LicensePlate('99-as-df').valid()).toBeTruthy();
+  });
 });

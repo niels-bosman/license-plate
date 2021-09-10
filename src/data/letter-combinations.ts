@@ -1,19 +1,19 @@
 /**
  * All forbidden words in license plates.
  *
- * @type {RegExp[]}
+ * @type {string[]}
  */
 const forbiddenWords: string[] = [
-	'GVD',
-	'KKK',
-	'KVT',
-	'LPF',
-	'NSB',
-	'PKK',
-	'PSV',
-	'TBS',
-	'SS',
-	'SD',
+  'GVD',
+  'KKK',
+  'KVT',
+  'LPF',
+  'NSB',
+  'PKK',
+  'PSV',
+  'TBS',
+  'SS',
+  'SD',
 ];
 
 export default forbiddenWords;

@@ -84,12 +84,10 @@ export default class LicensePlate {
   }
 
   /**
-   * Checks whether the given license plate includes
-   * some of the forbidden letter combinations.
+   * Checks whether the given license plate included some of the forbidden letter combinations.
    *
-   * Starting from sidecode 7, political abbreviations
-   * from political parties were excluded, except VVD,
-   * they were excluded starting from sidecode 8.
+   * Starting from sidecode 7, political abbreviations from political parties were excluded,
+   * except VVD, they were excluded starting from sidecode 8.
    *
    * Sources:
    * https://nl.wikipedia.org/wiki/Nederlands_kenteken

@@ -1,5 +1,5 @@
 import sidecodes from './data/sidecodes';
-import { forbiddenWords, politicalParties } from './data/letter-combinations';
+import forbiddenWords from './data/letter-combinations';
 
 export default class LicensePlate {
   /**
@@ -85,7 +85,15 @@ export default class LicensePlate {
 
   /**
    * Checks whether the given license plate includes
-   * some of the forbidden letter combinations
+   * some of the forbidden letter combinations.
+   *
+   * Starting from sidecode 7, political abbreviations
+   * from political parties were excluded, except VVD,
+   * they were excluded starting from sidecode 8.
+   *
+   * Sources:
+   * https://nl.wikipedia.org/wiki/Nederlands_kenteken
+   * https://www.rdw.nl/particulier/voertuigen/auto/de-kentekenplaat/cijfers-en-letters-op-de-kentekenplaat
    *
    * @return {boolean}
    * @private
@@ -93,8 +101,12 @@ export default class LicensePlate {
   private forbidden(): boolean {
     let forbidden = forbiddenWords;
 
-    if (this.sidecode() >= 11) {
-      forbidden = [...forbidden, ...politicalParties];
+    if (this.sidecode() >= 7) {
+      forbidden = [...forbidden, 'PVV', 'SGP'];
+    }
+
+    if (this.sidecode() >= 8) {
+      forbidden = [...forbidden, 'VVD'];
     }
 
     return forbidden.some((letterCombination: string) => this.licensePlate.includes(letterCombination));

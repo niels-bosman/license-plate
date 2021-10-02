@@ -6,13 +6,13 @@ Dutch license plate formatting and validation in JavaScript.
 ![npm](https://img.shields.io/npm/v/license-plate)
 ![GitHub Repo stars](https://img.shields.io/github/stars/niels-bosman/license-plate?style=social)
 
-## Install
-Install with npm
+## Installation
+Installing using npm
 ```bash
 npm install license-plate
 ```
 
-Install with yarn
+Installing using Yarn
 ```bash
 yarn add license-plate
 ```

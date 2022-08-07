@@ -61,23 +61,23 @@ export default class LicensePlate {
     const licensePlate = this.strippedLicensePlate();
 
     if (sidecode <= 6 && sidecode > 0) {
-      return `${licensePlate.substr(0, 2)}-${licensePlate.substr(2, 2)}-${licensePlate.substr(4, 2)}`;
+      return `${licensePlate.substring(0, 2)}-${licensePlate.substring(2, 4)}-${licensePlate.substring(4, 6)}`;
     }
 
     if ([7, 9].includes(sidecode)) {
-      return `${licensePlate.substr(0, 2)}-${licensePlate.substr(2, 3)}-${licensePlate.substr(5, 1)}`;
+      return `${licensePlate.substring(0, 2)}-${licensePlate.substring(2, 5)}-${licensePlate.substring(5, 6)}`;
     }
 
     if ([8, 10].includes(sidecode)) {
-      return `${licensePlate.substr(0, 1)}-${licensePlate.substr(1, 3)}-${licensePlate.substr(4, 2)}`;
+      return `${licensePlate.substring(0, 1)}-${licensePlate.substring(1, 4)}-${licensePlate.substring(4, 6)}`;
     }
 
     if ([11, 14].includes(sidecode)) {
-      return `${licensePlate.substr(0, 3)}-${licensePlate.substr(3, 2)}-${licensePlate.substr(5, 1)}`;
+      return `${licensePlate.substring(0, 3)}-${licensePlate.substring(3, 5)}-${licensePlate.substring(5, 6)}`;
     }
 
     if ([12, 13].includes(sidecode)) {
-      return `${licensePlate.substr(0, 1)}-${licensePlate.substr(1, 2)}-${licensePlate.substr(3, 3)}`;
+      return `${licensePlate.substring(0, 1)}-${licensePlate.substring(1, 3)}-${licensePlate.substring(3, 6)}`;
     }
 
     return licensePlate;

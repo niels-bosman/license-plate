@@ -15,7 +15,7 @@ export default class LicensePlate {
    * Constructs the licence plate with the input value as uppercase.
    */
   constructor(licensePlate: string) {
-    this.licensePlate = licensePlate.toUpperCase();
+    this.licensePlate = licensePlate.replace(/-/g, '').toUpperCase();
   }
 
   /**
@@ -29,25 +29,37 @@ export default class LicensePlate {
   }
 
   /**
-   * Finds the matching sidecode by the given license plate.
+   * Finds the matching sidecode by the given license plate. and returns
+   * the index of the sidecode in a human-readable format (+1).
    *
    * @public
    * @return {number} The index of the sidecode, 0 if not found.
    */
   public sidecode(): number {
-    const licensePlate = this.strippedLicensePlate();
-
-    return sidecodes.findIndex((sidecode: RegExp) => licensePlate.match(sidecode)) + 1;
+    return sidecodes.findIndex((sidecode: RegExp) => this.licensePlate.match(sidecode)) + 1;
   }
 
   /**
-   * Strips the dashes from the license plate.
+   * Finds the matching sidecode and returns the Regex pattern associated.
    *
    * @private
-   * @return {string}
+   * @return {RegExp} The Regex pattern.
    */
-  private strippedLicensePlate(): string {
-    return this.licensePlate.replace(/-/g, '');
+  private getSidecodePattern(): RegExp {
+    return sidecodes[this.sidecode() - 1];
+  }
+
+  /**
+   * Converts a license plate to the Regex equivalent based on the sidecode found.
+   *
+   * @private
+   * @param sidecode {RegExp} The Regex pattern to use when converting input plate.
+   */
+  private convertPlate(sidecode: RegExp): string {
+    let matches = this.licensePlate.match(sidecode) ?? [];
+    matches.shift();
+
+    return matches.join('-');
   }
 
   /**
@@ -57,30 +69,9 @@ export default class LicensePlate {
    * @returns {string} The formatted license plate.
    */
   public pretty(): string {
-    const sidecode     = this.sidecode();
-    const licensePlate = this.strippedLicensePlate();
+    const pattern = this.getSidecodePattern()
 
-    if (sidecode <= 6 && sidecode > 0) {
-      return `${licensePlate.substring(0, 2)}-${licensePlate.substring(2, 4)}-${licensePlate.substring(4, 6)}`;
-    }
-
-    if ([7, 9].includes(sidecode)) {
-      return `${licensePlate.substring(0, 2)}-${licensePlate.substring(2, 5)}-${licensePlate.substring(5, 6)}`;
-    }
-
-    if ([8, 10].includes(sidecode)) {
-      return `${licensePlate.substring(0, 1)}-${licensePlate.substring(1, 4)}-${licensePlate.substring(4, 6)}`;
-    }
-
-    if ([11, 14].includes(sidecode)) {
-      return `${licensePlate.substring(0, 3)}-${licensePlate.substring(3, 5)}-${licensePlate.substring(5, 6)}`;
-    }
-
-    if ([12, 13].includes(sidecode)) {
-      return `${licensePlate.substring(0, 1)}-${licensePlate.substring(1, 3)}-${licensePlate.substring(3, 6)}`;
-    }
-
-    return licensePlate;
+    return this.convertPlate(pattern);
   }
 
   /**
@@ -107,6 +98,8 @@ export default class LicensePlate {
       forbidden = [...forbidden, 'VVD'];
     }
 
-    return forbidden.some((letterCombination: string) => this.licensePlate.includes(letterCombination));
+    const formattedPlate = this.pretty();
+
+    return forbidden.some((word: string) => formattedPlate.includes(word));
   }
 }

@@ -1,4 +1,4 @@
-Dutch license plate formatting and validation in JavaScript.
+# Dutch license plate formatting and validation in JavaScript.
 
 ![npm bundle size](https://img.shields.io/bundlephobia/min/license-plate)
 ![npm](https://img.shields.io/npm/dt/license-plate)

@@ -7,7 +7,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node: ['18.x', '20.x']
+        node: ['20.x', '22.x']
         os: [ubuntu-latest]
 
     steps:
@@ -19,11 +19,14 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
-      - name: Install deps and build (with cache)
-        uses: bahmutov/npm-install@v1
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1.1.1
+
+      - name: Install dependencies
+        run: bun install
 
       - name: Test
-        run: yarn test --ci --coverage --maxWorkers=2
+        run: bun run test --ci --coverage --maxWorkers=2
 
       - name: Build
-        run: yarn build
+        run: bun run build
